@@ -2,10 +2,16 @@ export default function notice(props) {
   return (
     <li className="notice stack-small">
       <div className="c-cb">
-        <input id="notice-0" type="checkbox" defaultChecked={true} />
-        <p className="notice-label" htmlFor="notice-0">
+        <input
+          id={props.id}
+          name={props.name}
+          type="checkbox"
+          defaultChecked={props.completed}
+          onChange={() => props.toggleNoticeCompleted(props.id)}
+        />
+        <label className="notice-label" htmlFor={props.id}>
           {props.name}
-        </p>
+        </label>
       </div>
       <div className="btn-group">
         <button type="button" className="btn">

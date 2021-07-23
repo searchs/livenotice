@@ -1,53 +1,65 @@
+import React, { useState } from "react";
+import { nanoid } from "nanoid";
+import Form from "./components/Form";
+import FilterButton from "./components/FilterButton";
 import Notice from "./components/Notice";
 
 function App(props) {
+  const [notices, setNotices] = useState(props.notices);
+
+  function addNotice(name) {
+    const newNotice = {
+      id: "notice-" + nanoid(),
+      name: name,
+      completed: false
+    };
+    setNotices([...notices, newNotice]);
+  }
+
+  const noticeList = notices.map((notice) => (
+    <Notice
+      id={notice.id}
+      name={notice.name}
+      completed={notice.completed}
+      key={notice.id}
+      toggleNoticeCompleted={toggleNoticeCompleted}
+      deleteNotice={deleteNotice}
+    />
+  ));
+
+  function toggleNoticeCompleted(id) {
+    const updatedNotices = notices.map((notice) => {
+      if (id === notice.id) {
+        return { ...notice, completed: !notice.completed };
+      }
+      return notice;
+    });
+    setNotices(updatedNotices);
+  }
+
+  function deleteNotice(id) {
+    console.log(id);
+  }
+
+  const noticesNoun = noticeList.length !== 1 ? "notices" : "notice";
+  const headingText = `${noticeList.length} ${noticesNoun} remaining`;
+
   return (
     <div className="noticeapp stack-large">
-      <h1>Notices</h1>
-      <form>
-        <h2 className="label-wrapper">
-          <label htmlFor="new-notice-input" className="label__lg">
-            What needs to be done?
-          </label>
-        </h2>
-        <input
-          type="text"
-          id="new-notice-input"
-          className="input input__lg"
-          name="text"
-          autoComplete="off"
-        />
-        <button type="submit" className="btn btn__primary btn__lg">
-          Add
-        </button>
-      </form>
+      <h1>Live Notices</h1>
+      <Form addNotice={addNotice} />
       <div className="filters btn-group stack-exception">
-        <button type="button" className="btn toggle-btn" aria-pressed="true">
-          <span className="visually-hidden">Show </span>
-          <span>all</span>
-          <span className="visually-hidden"> tasks</span>
-        </button>
-        <button type="button" className="btn toggle-btn" aria-pressed="false">
-          <span className="visually-hidden">Show </span>
-          <span>Active</span>
-          <span className="visually-hidden"> tasks</span>
-        </button>
-        <button type="button" className="btn toggle-btn" aria-pressed="false">
-          <span className="visually-hidden">Show </span>
-          <span>Completed</span>
-          <span className="visually-hidden"> tasks</span>
-        </button>
+        <FilterButton />
+        <FilterButton />
+        <FilterButton />
       </div>
-      <h2 id="list-heading">3 tasks remaining</h2>
+      <h2 id="list-heading">{headingText}</h2>
       <ul
         role="list"
         className="notice-list stack-large stack-exception"
         aria-labelledby="list-heading"
       >
-        <Notice name="Men of Valour" />
-        <Notice name="Praise Night" />
-        <Notice name="Young Bowling" />
-        <Notice name="Sparkle Voices" />
+        {noticeList}
       </ul>
     </div>
   );
