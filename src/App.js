@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Notice from "./components/Notice";
+import Footer from "./components/Footer";
 
 function App(props) {
   const [notices, setNotices] = useState(props.notices);
@@ -24,6 +25,7 @@ function App(props) {
       key={notice.id}
       toggleNoticeCompleted={toggleNoticeCompleted}
       deleteNotice={deleteNotice}
+      editNotice={editNotice}
     />
   ));
 
@@ -39,6 +41,22 @@ function App(props) {
 
   function deleteNotice(id) {
     console.log(id);
+    const remainingNotices = notices
+      .filter((notice) => id !== notice.id)
+      .filter((notice) => notice.completed !== true);
+    setNotices(remainingNotices);
+  }
+
+  function editNotice(id, newName) {
+    const editedNoticeList = notices.map((notice) => {
+      // if this task has the same ID as the edited task
+      if (id === notice.id) {
+        //
+        return { ...notice, name: newName }; //adding a new property to existing object
+      }
+      return notice;
+    });
+    setNotices(editedNoticeList);
   }
 
   const noticesNoun = noticeList.length !== 1 ? "notices" : "notice";
@@ -61,6 +79,7 @@ function App(props) {
       >
         {noticeList}
       </ul>
+      <Footer />
     </div>
   );
 }
