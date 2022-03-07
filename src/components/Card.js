@@ -1,30 +1,18 @@
-export default function notice(props) {
+const Card = ({ title, completed, id, userId }) => {
   return (
-    <li className='notice stack-small'>
-      <div className='c-cb'>
-        <input
-          id={props.id}
-          name={props.name}
-          type='checkbox'
-          defaultChecked={props.completed}
-          onChange={() => props.toggleNoticeCompleted(props.id)}
-        />
-        <label className='notice-label' htmlFor={props.id}>
-          {props.name}
-        </label>
+    <div className='pa3 ma2 bg-light-gray shadow-5 br3 notice stack-small'>
+      <div>
+        <h2>
+          <span>
+            {' '}
+            {userId} | {id}
+          </span>{' '}
+          | {title}
+        </h2>
+        <h6>Status: {completed} </h6>
       </div>
-      <div className='btn-group'>
-        <button type='button' className='btn'>
-          Edit <span className='visually-hidden'>{props.name}</span>
-        </button>
-        <button
-          type='button'
-          className='btn btn__danger'
-          onClick={() => props.deleteNotice(props.id)}
-        >
-          Delete <span className='visually-hidden'>{props.name}</span>
-        </button>
-      </div>
-    </li>
+    </div>
   );
-}
+};
+
+export default Card;

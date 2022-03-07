@@ -5,16 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 
-const noticeList = [
-  { id: 'notice-0', name: 'Men of Valour', completed: true },
-  { id: 'notice-1', name: 'Praise Night', completed: true },
-  { id: 'notice-2', name: 'Bowling Team - Juniors', completed: true },
-  { id: 'notice-3', name: 'Fast Tennis', completed: false }
-];
+// const noticeList = [
+//   { id: 'notice-0', name: 'Men of Valour', completed: true },
+//   { id: 'notice-1', name: 'Praise Night', completed: true },
+//   { id: 'notice-2', name: 'Bowling Team - Juniors', completed: true },
+//   { id: 'notice-3', name: 'Fast Tennis', completed: false }
+// ];
 
 ReactDOM.render(
   <React.StrictMode>
-    <App notices={noticeList} />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
