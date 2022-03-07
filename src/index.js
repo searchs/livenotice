@@ -1,21 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import 'tachyons';
 
-const DATA = [
-  { id: "notice-0", name: "Men of Valour", completed: true },
-  { id: "notice-1", name: "Praise Night", completed: true },
-  { id: "notice-2", name: "Bowling Team - Juniors", completed: true },
-  { id: "notice-3", name: "Fast Tennis", completed: false }
+const noticeList = [
+  { id: 'notice-0', name: 'Men of Valour', completed: true },
+  { id: 'notice-1', name: 'Praise Night', completed: true },
+  { id: 'notice-2', name: 'Bowling Team - Juniors', completed: true },
+  { id: 'notice-3', name: 'Fast Tennis', completed: false }
 ];
 
 ReactDOM.render(
   <React.StrictMode>
-    <App notices={DATA} />
+    <App notices={noticeList} />
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
