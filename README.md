@@ -1,5 +1,7 @@
 # LiveNotice App
 
+Display the list of notices on the podium display.  Information is updated live and presented can be notified of any new information 
+necessary for the audience.
 
 ## Available Scripts
 
