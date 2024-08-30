@@ -9,6 +9,7 @@ const noticesData = [
     { id: "notice-1", name: "Praise Night", completed: true },
     { id: "notice-2", name: "Bowling Team - Juniors", completed: true },
     { id: "notice-3", name: "Fast Tennis", completed: false },
+    { id: "notice-4", name: "Fishing on land", completed: false },
 ];
 
 const container = document.getElementById("root");

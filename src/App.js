@@ -4,6 +4,7 @@ import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Notice from "./components/Notice";
 import Footer from "./components/Footer";
+import CurrentNotice from "./components/CurrentNotice.";
 
 function App(props) {
     const [notices, setNotices] = useState(props.notices);
@@ -18,6 +19,7 @@ function App(props) {
     }
 
     const noticeList = notices.map((notice) => (
+        <li>
         <Notice
             id={notice.id}
             name={notice.name}
@@ -27,6 +29,7 @@ function App(props) {
             deleteNotice={handleDeleteNotice}
             editNotice={handleEditNotice}
         />
+        </li>
     ));
 
     function toggleNoticeCompleted(id) {
@@ -60,16 +63,17 @@ function App(props) {
     }
 
     const noticesNoun = noticeList.length !== 1 ? "notices" : "notice";
-    const headingText = `${noticeList.length} ${noticesNoun} remaining`;
+    const headingText = `${noticeList.filter((notice) => !notice.completed).length} ${noticesNoun} remaining`;
 
     return (
             <div className="noticeapp stack-large">
+                <CurrentNotice notices={{notices}}/>
                 <h1>Pending Notices</h1>
 
                 <div className="filters btn-group stack-exception">
                     <FilterButton/>
                 </div>
-                <h2 id="list-heading">{headingText}</h2>
+                <h2 className={`fw-bold text-primary  display-2 text-center`}>{headingText}</h2>
                 <ul
                     className="notice-list stack-large stack-exception"
                     aria-labelledby="list-heading"
