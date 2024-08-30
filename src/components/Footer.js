@@ -1,7 +1,6 @@
-import React from "react";
-
 function Footer() {
-  return <p className="footer">museats.com</p>;
+  const currentYear = new Date().getFullYear();
+  return <p className="footer">livenotices.com &copy; {currentYear}</p>;
 }
 
 export default Footer;

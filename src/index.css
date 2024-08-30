@@ -37,6 +37,7 @@ button {
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
   -webkit-appearance: none;
+  border-radius: 15px;
 }
 
 button::-moz-focus-inner {
